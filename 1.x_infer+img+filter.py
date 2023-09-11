@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 import json
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 import cv2
 os.environ["CUDA_VISIBLE_DEVICES"]="0"
@@ -21,7 +21,47 @@ def rle_encode(mask):
     runs = np.where(pixels[1:] != pixels[:-1])[0] + 1
     runs[1::2] -= runs[::2]
     return ' '.join(str(x) for x in runs)
+    
+def apply_ellipse_filter(input_image):
+    # 이미지 크기 및 배경색 설정
+    width, height = input_image.size
+    background_color = (255, 255, 255)  # 배경색을 흰색으로 설정
 
+    # 새로운 이미지 생성 (알파 채널 포함)
+    new_image = Image.new("RGBA", (width, height), background_color)
+    draw = ImageDraw.Draw(new_image)
+
+    # 타원 크기 및 위치 설정
+    ellipse_width = 1850//2
+    ellipse_height = 1500//2
+    ellipse_left = (width - ellipse_width) // 2
+    ellipse_top = (height - ellipse_height) // 2
+    ellipse_right = ellipse_left + ellipse_width
+    ellipse_bottom = ellipse_top + ellipse_height - 100
+
+    # 타원 그리기 (알파 채널 사용)
+    ellipse_color = (0, 0, 0, 0)  # 흰색 (RGB) 및 완전 불투명 (알파 채널)
+    draw.ellipse((ellipse_left, ellipse_top, ellipse_right, ellipse_bottom), fill=ellipse_color)
+
+    # 입력 이미지와 새로운 이미지 합치기 (타원 외부는 투명, 내부는 그대로)
+    result_image = Image.alpha_composite(new_image, input_image.convert("RGBA"))
+
+    # 이미지를 OpenCV 형식으로 변환
+    result_cv2 = np.array(result_image)
+
+    # 타원 외부 영역의 픽셀 값을 흰색으로 설정
+    mask = np.zeros_like(result_cv2)  # 같은 크기의 빈 이미지 생성
+    cv2.ellipse(mask, ((ellipse_left + ellipse_right) // 2, (ellipse_top + ellipse_bottom) // 2),
+                (ellipse_width // 2, ellipse_height // 2), 0, 0, 360, (255, 255, 255), -1)  # 타원 내부 채우기
+    result_cv2[mask == 0] = 255  # 타원 외부 픽셀 값을 흰색(255)으로 설정
+
+    # 그레이 스케일로 변환
+    result_cv2 = cv2.cvtColor(result_cv2, cv2.COLOR_RGBA2GRAY)
+
+    # OpenCV 형식 이미지를 PIL 형식으로 변환
+    result_image = Image.fromarray(result_cv2)
+
+    return result_image
 def main():
     #----------------------------------------------------------------------
     save_dir = "work_dirs/infer"
@@ -49,22 +89,16 @@ def main():
             output_path = f'{output_folder}/infer_{img_id}_mask.png' 
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
             
-            img_result = show_result_pyplot(
-                model, img_path, mask, opacity=0.7, show = False)
-            
-            #if(int(img_id[5:]) % 2 == 1):  # 홀수만 저장
-                
+            img_result = show_result_pyplot(model, img_path, mask, opacity=0.7, show = False)         
             mmcv.imwrite(img_result, output_path)
                 
             mask = mask.pred_sem_seg.data
             mask = torch.squeeze(mask).cpu().numpy()
             mask = mask.astype(np.uint8)
             mask = Image.fromarray(mask)
-            mask = mask.resize((960, 540), Image.LANCZOS)
+            mask = mask.resize((960, 540), Image.NEAREST)
+            mask = apply_ellipse_filter(mask)
             mask = np.array(mask)
-            
-            #이미지 저장 부분
-
             
             for class_id in range(12):
                 class_mask = (mask == class_id).astype(np.uint8)
