@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 import json
 import numpy as np
-from PIL import Image, ImageFilter
+from PIL import Image, ImageDraw
 import mmcv_custom   # noqa: F401,F403
 import mmseg_custom 
 import cv2
@@ -16,6 +16,47 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 import mmcv
 import matplotlib.pyplot as plt
 
+def apply_ellipse_filter(input_image):
+    # 이미지 크기 및 배경색 설정
+    width, height = input_image.size
+    background_color = (255, 255, 255)  # 배경색을 흰색으로 설정
+
+    # 새로운 이미지 생성 (알파 채널 포함)
+    new_image = Image.new("RGBA", (width, height), background_color)
+    draw = ImageDraw.Draw(new_image)
+
+    # 타원 크기 및 위치 설정
+    ellipse_width = 1850//2
+    ellipse_height = 1500//2
+    ellipse_left = (width - ellipse_width) // 2
+    ellipse_top = (height - ellipse_height) // 2
+    ellipse_right = ellipse_left + ellipse_width
+    ellipse_bottom = ellipse_top + ellipse_height - 100
+
+    # 타원 그리기 (알파 채널 사용)
+    ellipse_color = (0, 0, 0, 0)  # 흰색 (RGB) 및 완전 불투명 (알파 채널)
+    draw.ellipse((ellipse_left, ellipse_top, ellipse_right, ellipse_bottom), fill=ellipse_color)
+
+    # 입력 이미지와 새로운 이미지 합치기 (타원 외부는 투명, 내부는 그대로)
+    result_image = Image.alpha_composite(new_image, input_image.convert("RGBA"))
+
+    # 이미지를 OpenCV 형식으로 변환
+    result_cv2 = np.array(result_image)
+
+    # 타원 외부 영역의 픽셀 값을 흰색으로 설정
+    mask = np.zeros_like(result_cv2)  # 같은 크기의 빈 이미지 생성
+    cv2.ellipse(mask, ((ellipse_left + ellipse_right) // 2, (ellipse_top + ellipse_bottom) // 2),
+                (ellipse_width // 2, ellipse_height // 2), 0, 0, 360, (255, 255, 255), -1)  # 타원 내부 채우기
+    result_cv2[mask == 0] = 255  # 타원 외부 픽셀 값을 흰색(255)으로 설정
+
+    # 그레이 스케일로 변환
+    result_cv2 = cv2.cvtColor(result_cv2, cv2.COLOR_RGBA2GRAY)
+
+    # OpenCV 형식 이미지를 PIL 형식으로 변환
+    result_image = Image.fromarray(result_cv2)
+
+    return result_image
+    
 def rle_encode(mask):
     pixels = mask.flatten()
     pixels = np.concatenate([[0], pixels, [0]])
@@ -59,8 +100,8 @@ def main():
                 #resize
                 mask = mask.astype(np.uint8)
                 mask_img = Image.fromarray(mask)
-                mask_img = mask_img.resize((960, 540), resample=Image.LANCZOS)
-
+                mask_img = mask_img.resize((960, 540), Image.NEAREST)
+                mask_img = apply_ellipse_filter(mask_img)
                 mask = np.array(mask_img)
                 for class_id in range(12):
                     class_mask = (mask == class_id).astype(np.uint8)
