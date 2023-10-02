@@ -7,8 +7,7 @@
 
 ## Index  
  ### 1. Used model (ViT-Adapter)  
-  - [ViT-Adapter](#ViT-Adapter)
-  - [Install ViT-Adapter](#install-ViT-Adapter)
+  - [Install ViT-Adapter](#install-ViT-Adapter)  
   - [Pretrained Checkpoints](#pretrained-checkpoints)
   - [How to start training](#how-to-start-training)
   - [How to start inference](#how-to-start-inference)
@@ -47,6 +46,9 @@
 # ViT-Adapter  
 
 # install-ViT-Adapter  
+
 # pretrained-checkpoints  
+
 # how-to-start-training  
+
 # how-to-start-inference
