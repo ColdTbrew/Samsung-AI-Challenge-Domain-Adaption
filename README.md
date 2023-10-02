@@ -44,11 +44,18 @@
 
 ----------------------------------------------------------
 # ViT-Adapter  
-
-# install-ViT-Adapter  
-
+## install-ViT-Adapter  
+  [Install from ViT repo](ViT-Adapter/segmentation/README.md)  
 # pretrained-checkpoints  
-
+  1. best_mIoU_iter_40000_vit_896_13class_a100.pth  
+  [Download Link](https://o365inha-my.sharepoint.com/:u:/g/personal/shchoi8687_office_inha_ac_kr/EXDIk_hKSKpGgB_0a8Frtd0BKxBa8o15xWgW2nMLqNmFWw?e=eOaM1H)  
 # how-to-start-training  
-
+   ```
+   cd ViT-Adapter/segmentation/
+   python train.py work_dirs/work_dirs/vit13class.py
+   ```
 # how-to-start-inference
+   ```
+   cd ViT-Adapter/segmentation/
+   python infer.py
+   ```
