@@ -1,6 +1,0 @@
-[submodule "ViT-Adapter"]
-	path = ViT-Adapter
-	url = https://github.com/czczup/ViT-Adapter.git
-[submodule "InternImage"]
-	path = InternImage
-	url = https://github.com/OpenGVLab/InternImage.git
