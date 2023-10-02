@@ -1,9 +1,20 @@
-
 # Samsung_AI_Challenge (이미지 분할을 위한 도메인 적응)
 
+## Members  
 [3!4! Team]  
   [ColdTbrew](https://github.com/ColdTbrew)   
   [BONG-KI](https://github.com/JB0527)
+
+## Index  
+ ### 1. Used model (ViT-Adapter)  
+  - [ViT-Adapter](#ViT-Adapter)
+  - [Install ViT-Adapter](#install-ViT-Adapter)
+  - [Pretrained Checkpoints](#pretrained-checkpoints)
+  - [How to start training](#how-to-start-training)
+  - [How to start inference](#how-to-start-inference)
+  ### 2. Competition Info (##배경)
+
+  
 ## 배경
     자율주행은 다양한 센서를 활용하여 주변 환경을 감지하고 차량을 제어하는 중요한 기술입니다. 
     카메라 센서는 차량에 다양한 위치와 종류로 장착되며, 주행 환경에 따라 영상 데이터의 차이가 발생합니다.
@@ -33,4 +44,9 @@
 [데이콘 홈페이지로 대체](https://dacon.io/competitions/official/236132/data)
 
 ----------------------------------------------------------
+# ViT-Adapter  
 
+# install-ViT-Adapter  
+# pretrained-checkpoints  
+# how-to-start-training  
+# how-to-start-inference
