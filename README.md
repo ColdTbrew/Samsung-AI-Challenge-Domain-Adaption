@@ -11,9 +11,10 @@
   - [Pretrained Checkpoints](#pretrained-checkpoints)
   - [How to start training](#how-to-start-training)
   - [How to start inference](#how-to-start-inference)
+  - [Download logs](#Download logs)
   ### 2. Competition Info
   - [info](#배경)
-
+  ### 3. 사용환경
   
 ## 배경
     자율주행은 다양한 센서를 활용하여 주변 환경을 감지하고 차량을 제어하는 중요한 기술입니다. 
@@ -47,6 +48,11 @@
 # ViT-Adapter  
 ## install-ViT-Adapter  
   [Install from ViT repo](ViT-Adapter/segmentation/README.md)  
+  ### extra install  
+  ```
+   cd ViT-Adapter/segmentation/
+   pip install -r requirement.txt
+  ```
 # pretrained-checkpoints  
   1. best_mIoU_iter_40000_vit_896_13class_a100.pth  
   [Download Link](https://o365inha-my.sharepoint.com/:u:/g/personal/shchoi8687_office_inha_ac_kr/EXDIk_hKSKpGgB_0a8Frtd0BKxBa8o15xWgW2nMLqNmFWw?e=eOaM1H)  
@@ -60,3 +66,5 @@
    cd ViT-Adapter/segmentation/
    python infer.py
    ```
+# Download logs  
+ [20230928_084831.log Link](https://o365inha-my.sharepoint.com/:u:/g/personal/shchoi8687_office_inha_ac_kr/Ebr5V8U8ejRGhyB0Svu0Ck8B39TiTHr6ZIbYmo6A_reiGA?e=MoEYVj)
