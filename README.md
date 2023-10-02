@@ -11,7 +11,8 @@
   - [Pretrained Checkpoints](#pretrained-checkpoints)
   - [How to start training](#how-to-start-training)
   - [How to start inference](#how-to-start-inference)
-  ### 2. Competition Info (##배경)
+  ### 2. Competition Info
+  - [info](#배경)
 
   
 ## 배경
