@@ -75,6 +75,7 @@
 
 # Dataset 
  [prepare dataset](data_preprocessing/data/open)  
+    download_open.zip and unzip to this path : data_preprocessing/data/open
  
     ├── data
     │   ├── open
