@@ -15,7 +15,7 @@
   ### 2. Competition Info
   - [info](#배경)
   ### 3. 사용환경
-  - [logs](#vit_train_logs)
+  - [logs](#vit_train_logs/20230928_084831.log)
 
 
 ![대회정보](./pngs/dacon.png)  
