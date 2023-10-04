@@ -66,6 +66,7 @@
   ### extra install  
   ```
    cd ViT-Adapter/segmentation/
+   pip install scipy
    pip install -r requirement.txt
   ```
 # pretrained_pths  
