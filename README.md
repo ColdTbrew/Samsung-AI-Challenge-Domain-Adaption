@@ -10,7 +10,7 @@
   - [Install ViT-Adapter](#install-ViT-Adapter)  
   - [Pretrained Checkpoints](#pretrained-checkpoints)
   - [How to start training](#how-to-start-training)
-  - [How to start inference](#how-to-start-inference)
+  - [How to start inference](#how-to-start-inference)  
   - [Download logs](#Download logs)
   ### 2. Competition Info
   - [info](#배경)
