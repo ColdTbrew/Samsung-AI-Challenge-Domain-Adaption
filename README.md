@@ -68,7 +68,7 @@
 # how-to-start-inference
    ```
    cd ViT-Adapter/segmentation/
-   python infer.py
+   python 0.x_infer+img+filter.py
    ```
 # Download-logs  
  [20230928_084831.log Link](https://o365inha-my.sharepoint.com/:u:/g/personal/shchoi8687_office_inha_ac_kr/Ebr5V8U8ejRGhyB0Svu0Ck8B39TiTHr6ZIbYmo6A_reiGA?e=MoEYVj)
