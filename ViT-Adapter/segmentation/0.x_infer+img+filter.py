@@ -27,8 +27,8 @@ def main():
     csv_save_dir = "work_dirs/infer/submit_csv"
     file_name = 'vit_40k'
     img_output_folder = 'work_dirs/infer/vit_40k'
-    config_file = 'work_dirs/vit_13class.py'
-    checkpoint_file = 'work_dirs/beit_large_patch16_224_pt22k_ft22k.pth'
+    config_file = 'work_dirs/vit'
+    checkpoint_file = 'work_dirs/vit.pth'
     #-----
     sample_path = "../../data_preprocessing/data/open/test.csv"
     test_image_path = "../../data_preprocessing/data/open/test_image"
