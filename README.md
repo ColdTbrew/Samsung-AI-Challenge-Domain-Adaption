@@ -98,7 +98,7 @@
 
 
 # Environment  
-'''
+ ```
   sys.platform: linux
   Python: 3.8.0 (default, Nov  6 2019, 21:49:08) [GCC 7.3.0]
   CUDA available: True
@@ -127,4 +127,4 @@
   MMCV Compiler: GCC 7.3
   MMCV CUDA Compiler: 11.1
   MMSegmentation: 0.20.2+e1afc82
-  '''
+ ```
