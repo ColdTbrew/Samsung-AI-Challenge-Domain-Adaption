@@ -30,9 +30,9 @@ def main():
     config_file = 'work_dirs/vit'
     checkpoint_file = 'work_dirs/vit.pth'
     #-----
-    sample_path = "C:/Users/ADMIN/Projects/JBK/mmseg_Data/open/test.csv"
-    test_image_path = "C:/Users/ADMIN/Projects/JBK/mmseg_Data/open/test_image"
-    submit_path = "C:/Users/ADMIN/Projects/JBK/mmseg_Data/open/sample_submission.csv"
+    sample_path = "../../data_preprocessing/data/open/test.csv"
+    test_image_path = "../../data_preprocessing/data/open/test_image"
+    submit_path = "../../data_preprocessing/data/open/sample_submission.csv"
     #----------------------------------------------------------------------
     device = "cuda"
     
