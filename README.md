@@ -2,7 +2,7 @@
 ![대회정보](./pngs/dacon.png)  
 
 ## Members  
-[3!4! Team]  
+### [3!4! Team]
   [ColdTbrew](https://github.com/ColdTbrew)   
   [BONG-KI](https://github.com/JB0527)
 
