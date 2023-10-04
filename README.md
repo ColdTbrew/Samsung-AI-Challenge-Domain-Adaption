@@ -1,4 +1,5 @@
 # Samsung_AI_Challenge (이미지 분할을 위한 도메인 적응)
+![대회정보](./pngs/dacon.png)  
 
 ## Members  
 [3!4! Team]  
@@ -18,7 +19,6 @@
   - [Environment](#Environment)
     
 
-![대회정보](./pngs/dacon.png)  
 
 ## 배경
     자율주행은 다양한 센서를 활용하여 주변 환경을 감지하고 차량을 제어하는 중요한 기술입니다. 
