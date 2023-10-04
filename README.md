@@ -68,7 +68,7 @@ download to 'ViT-Adapter/segmentation/pretrained'
 # how-to-start-training  
    ```
    cd ViT-Adapter/segmentation/
-   python train.py work_dirs/work_dirs/vit13class.py
+   python train.py work_dirs/vit_13class.py
    ```
 # how-to-start-inference
    ```
