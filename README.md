@@ -57,9 +57,14 @@
    cd ViT-Adapter/segmentation/
    pip install -r requirement.txt
   ```
-# pretrained-checkpoints  
-  1. best_mIoU_iter_40000_vit_896_13class_a100.pth  
-  [Download Link](https://o365inha-my.sharepoint.com/:u:/g/personal/shchoi8687_office_inha_ac_kr/EXDIk_hKSKpGgB_0a8Frtd0BKxBa8o15xWgW2nMLqNmFWw?e=eOaM1H)  
+# pretrained_pths  
+download to 'ViT-Adapter/segmentation/pretrained'  
+  [beit_large_patch16_224_pt22k_ft22k.pth](https://o365inha-my.sharepoint.com/:u:/g/personal/shchoi8687_office_inha_ac_kr/EQHoIHanx1xApKUIvWvo1L0Byg6Cjx7NkG4W4iPb7pu2LQ?e=xgeQn5)  
+  
+# best-miou-checkpoints  
+1. best_mIoU_iter_40000_vit_896_13class_a100.pth
+   download to 'ViT-Adapter/segmentation/work_dirs'  
+  [best_mIoU_iter_40000_vit_896_13class_a100.pth](https://o365inha-my.sharepoint.com/:u:/g/personal/shchoi8687_office_inha_ac_kr/EXDIk_hKSKpGgB_0a8Frtd0BKxBa8o15xWgW2nMLqNmFWw?e=eOaM1H)  
 # how-to-start-training  
    ```
    cd ViT-Adapter/segmentation/
