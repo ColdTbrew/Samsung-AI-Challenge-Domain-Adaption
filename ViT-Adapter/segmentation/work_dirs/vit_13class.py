@@ -106,7 +106,7 @@ model = dict(
             reduction='mean',
             class_weight=[
                 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
-                1.0
+                1.0, 0.1
             ]),
         loss_mask=dict(
             type='CrossEntropyLoss',
@@ -174,14 +174,17 @@ test_pipeline = [
         type='MultiScaleFlipAug',
         img_scale=(2048, 1024),
         img_ratios=[0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0],
-        flip=True,
+        flip=False,
         transforms=[
-            dict(type='SETR_Resize', keep_ratio=True,
-                 crop_size=crop_size, setr_multi_scale=True),
+            dict(type='Resize', keep_ratio=True),
             dict(type='RandomFlip'),
-            dict(type='Normalize', **img_norm_cfg),
+            dict(
+                type='Normalize',
+                mean=[123.675, 116.28, 103.53],
+                std=[58.395, 57.12, 57.375],
+                to_rgb=True),
             dict(type='ImageToTensor', keys=['img']),
-            dict(type='Collect', keys=['img']),
+            dict(type='Collect', keys=['img'])
         ])
 ]
 data = dict(
@@ -189,9 +192,9 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type='samsung',
-        data_root= '../../data_preprocessing/data/13class_dataset',
-        img_dir='target_img',
-        ann_dir='target_img_anno',
+        data_root='../../data_preprocessing/data/13class_dataset',
+        img_dir='train_img',
+        ann_dir='train_img_anno',
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(type='LoadAnnotations'),
@@ -215,8 +218,8 @@ data = dict(
     val=dict(
         type='samsung',
         data_root='../../data_preprocessing/data/13class_dataset',
-        img_dir='target_valid_img',
-        ann_dir='target_valid_anno',
+        img_dir='valid_img',
+        ann_dir='valid_img_anno',
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(
@@ -238,15 +241,14 @@ data = dict(
     test=dict(
         type='samsung',
         data_root='../../data_preprocessing/data/13class_dataset',
-        img_dir='target_valid_img',
-        ann_dir='target_valid_anno',
+        img_dir='valid_img',
+        ann_dir='valid_img_anno',
         pipeline=[
             dict(type='LoadImageFromFile'),
             dict(
                 type='MultiScaleFlipAug',
                 img_scale=(2048, 1024),
-                img_ratios=[0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0],
-                flip=True,
+                flip=False,
                 transforms=[
                     dict(type='Resize', keep_ratio=True),
                     dict(type='RandomFlip'),
